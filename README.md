@@ -4,26 +4,6 @@
 
 This repository provides the basic tools for creating a Python REST API powered by [Flask](https://flask.palletsprojects.com/en/1.1.x/).
 
-## What does it set-up for you?
-
-This repo helps you quickly bootstrap a REST API using Flask. It also sets up the following things for you.
-
-- File and code structure with one sample endpoint.
-- `requirements.txt` already set up with everything you need to create a working virtual environment.
-- A tests package for testing your API endpoints.
-- A root python file (`index.py`) which makes launching your app simple on both your local machine and on some sort of serverless compute environment.
-- GitHub Actions workflow to test and lint your application with `flake8`.
-- A license.
-
-## What does it NOT set-up for you?
-
-We don't do everything for you, because your project requirements might be different than ours. We don't:
-
-- Set-up any sort of serverless deployment via GitHub actions, I personally love AWS Lambda, but you may prefer some other cloud provider.
-- Set-up tox to quickly test and lint your application on your local machine. Although [tox](https://tox.readthedocs.io/en/latest/) is awesome and you should do this.
-- Set-up any sort of static analysis tool. Python3 has types and you should use them, should you decide to type your code, using a tool like [mypy](http://mypy-lang.org/) for static analysis and type-checking is awesome and you should consider doing this.
-- Differentiate between application dependencies and development dependencies, it can be beneficial to do this, especially if you are deploying your app to a cloud provider, you can reduce your application's size this way.
-
 # Setup
 
 This codebase uses Python3.7.X/Python3.8.X. These setup instructions are for macOS using [Homebrew](https://brew.sh).

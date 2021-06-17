@@ -19,6 +19,3 @@ class TestRoot(unittest.TestCase):
             follow_redirects=True
         )
         self.assertEqual(response.status_code, HttpCodes.HTTP_200_OK)
-        data = json.loads(response.data.decode())
-        expected_data = "Hello Root Endpoint!"
-        self.assertEqual(data, expected_data)
