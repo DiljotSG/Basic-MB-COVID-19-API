@@ -41,6 +41,7 @@ package:
   - "venv/**"
   - "tests/**"
   - ".gitignore"
+  - "package.json"
   - LICENSE
   - README.md
   - requirements.txt
