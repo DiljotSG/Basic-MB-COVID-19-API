@@ -80,7 +80,7 @@ PERCENT_SCHEMA = {
 							"Per_cent_All_Immunized_12": {
 								"$id": "#root/features/items/attributes/Per_cent_All_Immunized_12", 
 								"title": "Per_cent_all_immunized_12", 
-								"type": "integer",
+								"type": "number",
 								"default": 0
 							},
 							"ObjectId": {

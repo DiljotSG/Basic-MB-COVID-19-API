@@ -5,16 +5,6 @@ from typing import Optional
 from jsonschema import validate
 from jsonschema import ValidationError
 
-
-def is_valid_schema(obj: dict, schema: dict) -> bool:
-    result = True
-    try:
-        validate(instance=obj, schema=schema)
-    except ValidationError:
-        result = False
-    return result
-
-
 class ArcGISService:
     @staticmethod
     def send_request(url: str, params: dict):
@@ -41,8 +31,7 @@ class ArcGISService:
                 "spatialRel": "esriSpatialRelIntersects"
             }
         ).json()
-        if not is_valid_schema(data, consts.PERCENT_SCHEMA):
-            return None
+        validate(instance=data, schema=consts.PERCENT_SCHEMA)
         return data
 
     @staticmethod
@@ -60,8 +49,7 @@ class ArcGISService:
                 "spatialRel": "esriSpatialRelIntersects"
             }
         ).json()
-        if not is_valid_schema(data, consts.DOSES_SCHEMA):
-            return None
+        validate(instance=data, schema=consts.DOSES_SCHEMA)
         return data
 
     @staticmethod
@@ -79,6 +67,5 @@ class ArcGISService:
                 "spatialRel": "esriSpatialRelIntersects"
             }
         ).json()
-        if not is_valid_schema(data, consts.CASES_SCHEMA):
-            return None
+        validate(instance=data, schema=consts.CASES_SCHEMA)
         return data
