@@ -39,10 +39,12 @@ package:
   - ".github/**"
   - ".git/**"
   - "venv/**"
+  - "node_modules/**"
   - "tests/**"
   - ".gitignore"
-  - "package.json"
   - LICENSE
   - README.md
   - requirements.txt
+  - package.json
+  - package-lock.json
   
