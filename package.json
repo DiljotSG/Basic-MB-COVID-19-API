@@ -1,0 +1,25 @@
+{
+  "name": "basic-mb-covid-19-api",
+  "version": "1.0.0",
+  "description": "This repository contains the back-end for the basic-mb-covid-19-api.",
+  "main": "index.py",
+  "dependencies": {
+    "serverless-python-requirements": "^5.0.1",
+    "serverless-wsgi": "^1.7.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiljotSG/Basic-MB-COVID-19-API.git"
+  },
+  "keywords": [],
+  "author": "Diljot Garcha",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/DiljotSG/Basic-MB-COVID-19-API/issues"
+  },
+  "homepage": "https://github.com/DiljotSG/Basic-MB-COVID-19-API/blob/master/README.md"
+}
