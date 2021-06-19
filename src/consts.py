@@ -1,6 +1,7 @@
 BASE_URL_VAX_COV = "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/mb_covid_vaccinations_coverage/FeatureServer/0/query"
 BASE_URL_INV_STATS = "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/mb_covid_vaccinations_inventory_stats/FeatureServer/0/query"
 BASE_URL_NEW_CASES = "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/mb_covid_cases_summary_statistics/FeatureServer/0/query"
+BASE_URL_TP = "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/mb_covid_5_day_positivity_rate/FeatureServer/0/query"
 
 PERCENT_SCHEMA = {
 	"definitions": {},
@@ -353,6 +354,67 @@ CASES_SCHEMA = {
 							"Rate": {
 								"$id": "#root/features/items/attributes/Rate", 
 								"title": "Rate", 
+								"type": "number",
+								"default": 0.0
+							},
+							"ObjectId": {
+								"$id": "#root/features/items/attributes/ObjectId", 
+								"title": "Objectid", 
+								"type": "integer",
+								"default": 0
+							}
+						}
+					}
+
+				}
+			}
+
+		}
+	}
+}
+
+TP_SCHEMA = {
+	"definitions": {},
+	"$schema": "http://json-schema.org/draft-07/schema#", 
+	"$id": "https://example.com/object1624136171.json", 
+	"title": "Root", 
+	"type": "object",
+	"required": [
+		"features"
+	],
+	"properties": {
+		"features": {
+			"$id": "#root/features", 
+			"title": "Features", 
+			"type": "array",
+			"default": [],
+			"items":{
+				"$id": "#root/features/items", 
+				"title": "Items", 
+				"type": "object",
+				"required": [
+					"attributes"
+				],
+				"properties": {
+					"attributes": {
+						"$id": "#root/features/items/attributes", 
+						"title": "Attributes", 
+						"type": "object",
+						"required": [
+							"Date",
+							"Positivity_Rate",
+							"ObjectId"
+						],
+						"properties": {
+							"Date": {
+								"$id": "#root/features/items/attributes/Date", 
+								"title": "Date", 
+								"type": "integer",
+								"default": 0
+							},
+							"Positivity_Rate": {
+								"$id": "#root/features/items/attributes/Positivity_Rate", 
+								"title": "Positivity_rate", 
 								"type": "number",
 								"default": 0.0
 							},

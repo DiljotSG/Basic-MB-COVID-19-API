@@ -8,9 +8,11 @@ class COVIDService:
         doses = COVIDService.__get_parsed_doses_data()
         vaxx = COVIDService.__get_parsed_immunization_data()
         cases = COVIDService.__get_parsed_cases_data()
+        tp = COVIDService.__get_parsed_tp_data()
         result.update(doses)
         result.update(vaxx)
         result.update(cases)
+        result.update(tp)
 
         return result
 
@@ -19,7 +21,12 @@ class COVIDService:
         data = ArcGISService.get_doses_data()["features"][0]["attributes"]
         keys = [
             "Total_Doses_Administered",
-            "Doses_Scheduled_for_Today"
+            "Supersite_FIT_Pop_Up_Clinic",
+            "Doses_Delivered_to_First_Nation",
+            "Doses_Delivered_to_Doctors_and_",
+            "Doses_Received_in_Last_48_Hours",
+            "Doses_Scheduled_for_Today",
+            "Days_worth_of_inventory"
         ]
         return dict((k,v) for k,v in data.items() if k in keys)
 
@@ -53,5 +60,14 @@ class COVIDService:
             "Total_Hospitalizations",
             "Active_ICU_Patients",
             "Total_ICU_Patients"
+        ]
+        return dict((k,v) for k,v in data.items() if k in keys)
+
+    @staticmethod
+    def __get_parsed_tp_data() -> dict:
+        data = ArcGISService.get_tp_data()["features"][0]["attributes"]
+        print(data)
+        keys = [
+            "Positivity_Rate"
         ]
         return dict((k,v) for k,v in data.items() if k in keys)
