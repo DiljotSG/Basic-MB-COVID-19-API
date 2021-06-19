@@ -3,7 +3,6 @@ import src.consts as consts
 
 from typing import Optional
 from jsonschema import validate
-from jsonschema import ValidationError
 
 class ArcGISService:
     @staticmethod
