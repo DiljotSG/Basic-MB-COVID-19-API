@@ -21,6 +21,7 @@ imageService = ImageService()
 def get_image_cases():
     code = HttpCodes.HTTP_200_OK
     new_deaths = request.args.get("new_deaths", type=int)
+    new_deaths = None if new_deaths < 0 else new_deaths
 
     image = imageService.get_daily_cases_image(new_deaths)
 
