@@ -39,12 +39,19 @@ class COVIDService:
     @staticmethod
     def __get_parsed_cases_data() -> dict:
         data = ArcGISService.get_cases_data()["features"][0]["attributes"]
+        print(data)
         keys = [
             "Last_Update",
+            "Total_Tests",
+            "Daily_Tests",
+            "Total_Cases",
+            "Active_Cases",
+            "Recovered",
             "Deaths",
             "New_Cases",
-            "Active_Cases",
-            "Total_Cases",
-            "Recovered"
+            "Active_Hospitalizations",
+            "Total_Hospitalizations",
+            "Active_ICU_Patients",
+            "Total_ICU_Patients"
         ]
         return dict((k,v) for k,v in data.items() if k in keys)
