@@ -10,7 +10,7 @@ class ImageService:
         self.font = ImageFont.truetype("./resources/Poppins-Light.ttf", 60)
         self.date_font = ImageFont.truetype("./resources/Poppins-Light.ttf", 40)
 
-    def get_daily_cases_image(self):
+    def get_daily_cases_image(self, new_deaths):
         self.image = Image.open("./resources/template-cases.png")
         self.draw = ImageDraw.Draw(self.image)
         self.width, self.height = self.image.size
@@ -21,7 +21,7 @@ class ImageService:
         self.__write_active_cases()
         self.__write_total_cases()
         self.__write_recovered()
-        self.__write_deaths()
+        self.__write_deaths(new_deaths)
 
         return self.image
 
@@ -44,7 +44,7 @@ class ImageService:
         msg = str(self.data["Last_Update"])
     
         w, h = self.draw.textsize(msg, font=self.date_font)
-        size = ((self.width-w)/2, 485) # 225
+        size = ((self.width-w)/2, 485) # delta = 225
 
         self.draw.text(size, msg, fill="black", font=self.date_font)
 
@@ -52,7 +52,7 @@ class ImageService:
         msg = str('{:,}'.format(self.data["Total_Doses_Administered"]))
     
         w, h = self.draw.textsize(msg, font=self.font)
-        size = ((self.width-w)/2, 725) # 225
+        size = ((self.width-w)/2, 725)
 
         self.draw.text(size, msg, fill="black", font=self.font)
 
@@ -60,7 +60,7 @@ class ImageService:
         msg = str('{:,}'.format(self.data["New_Cases"]))
     
         w, h = self.draw.textsize(msg, font=self.font)
-        size = ((self.width-w)/2, 725) # 225
+        size = ((self.width-w)/2, 725)
 
         self.draw.text(size, msg, fill="black", font=self.font)
     
@@ -80,14 +80,6 @@ class ImageService:
 
         self.draw.text(size, msg, fill="black", font=self.font)
 
-    def __write_total_vaxx(self):
-        msg = str('{:,}% (18+) / {:,}% (12+)'.format(self.data["Per_cent_All_Immunized_18"], self.data["Per_cent_All_Immunized_12"]))
-    
-        w, h = self.draw.textsize(msg, font=self.font)
-        size = ((self.width-w)/2, 1175)
-
-        self.draw.text(size, msg, fill="black", font=self.font)
-
     def __write_total_cases(self):
         msg = str('{:,}'.format(self.data["Total_Cases"]))
     
@@ -100,7 +92,7 @@ class ImageService:
         msg = str('{:,}% (18+) / {:,}% (12+)'.format(self.data["Per_cent_Partially_Immunized_18"], self.data["Per_cent_Partially_Immunized_12"]))
     
         w, h = self.draw.textsize(msg, font=self.font)
-        size = ((self.width-w)/2, 1400)
+        size = ((self.width-w)/2, 1175)
 
         self.draw.text(size, msg, fill="black", font=self.font)
     
@@ -116,12 +108,22 @@ class ImageService:
         msg = str('{:,}% (18+) / {:,}% (12+)'.format(self.data["Per_cent_Fully_Immunized_18"], self.data["Per_cent_Fully_Immunized_12"]))
     
         w, h = self.draw.textsize(msg, font=self.font)
+        size = ((self.width-w)/2, 1400)
+
+        self.draw.text(size, msg, fill="black", font=self.font)
+
+    def __write_total_vaxx(self):
+        msg = str('{:,}% (18+) / {:,}% (12+)'.format(self.data["Per_cent_All_Immunized_18"], self.data["Per_cent_All_Immunized_12"]))
+    
+        w, h = self.draw.textsize(msg, font=self.font)
         size = ((self.width-w)/2, 1625)
 
         self.draw.text(size, msg, fill="black", font=self.font)
     
-    def __write_deaths(self):
+    def __write_deaths(self, new_deaths):
         msg = str('{:,}'.format(self.data["Deaths"]))
+        if new_deaths != None:
+            msg = str('{:,} / +{} new deaths'.format(self.data["Deaths"], new_deaths))
     
         w, h = self.draw.textsize(msg, font=self.font)
         size = ((self.width-w)/2, 1625)

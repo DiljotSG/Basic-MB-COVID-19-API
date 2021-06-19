@@ -3,6 +3,7 @@ import flask
 import base64
 
 from io import BytesIO
+from flask import request
 from flask import Blueprint
 from flask import send_file
 from flask_cors import CORS
@@ -19,7 +20,9 @@ imageService = ImageService()
 @cross_origin()
 def get_image_cases():
     code = HttpCodes.HTTP_200_OK
-    image = imageService.get_daily_cases_image()
+    new_deaths = request.args.get("new_deaths", type=int)
+
+    image = imageService.get_daily_cases_image(new_deaths)
 
     if os.environ.get("IS_LAMBDA"):
         # Return a base64 encoded image in plaintext
