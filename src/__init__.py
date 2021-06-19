@@ -2,6 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 
 from src.routes.root import mod as root_mod
+from src.routes.images import mod as images_mod
 
 
 # We want to be flexible with regards to trailing slashes
@@ -19,5 +20,6 @@ def create_flask_app():
     CORS(app)
 
     app.register_blueprint(root_mod, url_prefix="/")
+    app.register_blueprint(images_mod, url_prefix="/images")
 
     return app
