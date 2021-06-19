@@ -34,13 +34,28 @@ def get_image_cases():
         return response, code
 
     return serve_pil_image(image), code
-    
 
 @mod.route("vaxx", methods=["GET"])
 @cross_origin()
 def get_image_vaxx():
     code = HttpCodes.HTTP_200_OK
     image = imageService.get_daily_vaxx_image()
+
+    if os.environ.get("IS_LAMBDA"):
+        # Return a base64 encoded image in plaintext
+        response = flask.Response()
+        data = base64.b64encode(serve_pil_image(image)).decode('utf-8')
+        response.headers.set('Content-Type', 'text/plain')
+        response.data = format(data)
+        return response, code
+
+    return serve_pil_image(image), code
+
+@mod.route("data", methods=["GET"])
+@cross_origin()
+def get_image_data():
+    code = HttpCodes.HTTP_200_OK
+    image = imageService.get_daily_data_image()
 
     if os.environ.get("IS_LAMBDA"):
         # Return a base64 encoded image in plaintext
