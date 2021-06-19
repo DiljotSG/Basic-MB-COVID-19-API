@@ -2,7 +2,7 @@
 
 ![Python CI](https://github.com/DiljotSG/flask-api-template/workflows/Python%20application/badge.svg?branch=master)
 
-This repository provides the basic tools for creating a Python REST API powered by [Flask](https://flask.palletsprojects.com/en/1.1.x/).
+A basic wrapper for the MB COVID-19 ArcGIS REST API
 
 # Setup
 
