@@ -21,7 +21,7 @@ class ImageService:
             str('{:,}'.format(self.data["Active_Cases"])),
             str('{:,}'.format(self.data["Total_Cases"])),
             str('{:,}'.format(self.data["Recovered"])),
-            str('Total: {:,}'.format(self.data["Deaths"])) if new_deaths is None else str('Total: {:,} / New: {:,}'.format(self.data["Deaths"], new_deaths))
+            str('Total: {:,}'.format(self.data["Deaths"])) if new_deaths is None else str('New: {:,} / Total: {:,}'.format(new_deaths, self.data["Deaths"]))
         ]
         self.__write_data(messages)
         return self.image
