@@ -1,19 +1,14 @@
 from src.services.arcgis import ArcGISService
 
+
 class COVIDService:
     @staticmethod
     def get_daily_data() -> dict:
         result = {}
-
-        doses = COVIDService.__get_parsed_doses_data()
-        vaxx = COVIDService.__get_parsed_immunization_data()
-        cases = COVIDService.__get_parsed_cases_data()
-        tp = COVIDService.__get_parsed_tp_data()
-        result.update(doses)
-        result.update(vaxx)
-        result.update(cases)
-        result.update(tp)
-
+        result.update(COVIDService.__get_parsed_doses_data())
+        result.update(COVIDService.__get_parsed_immunization_data())
+        result.update(COVIDService.__get_parsed_cases_data())
+        result.update(COVIDService.__get_parsed_tp_data())
         return result
 
     @staticmethod
@@ -46,7 +41,6 @@ class COVIDService:
     @staticmethod
     def __get_parsed_cases_data() -> dict:
         data = ArcGISService.get_cases_data()["features"][0]["attributes"]
-        print(data)
         keys = [
             "Last_Update",
             "Total_Tests",
@@ -66,7 +60,6 @@ class COVIDService:
     @staticmethod
     def __get_parsed_tp_data() -> dict:
         data = ArcGISService.get_tp_data()["features"][0]["attributes"]
-        print(data)
         keys = [
             "Positivity_Rate"
         ]

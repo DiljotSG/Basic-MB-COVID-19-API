@@ -1,5 +1,4 @@
 import src
-import json
 import unittest
 from src.response_codes import HttpCodes
 

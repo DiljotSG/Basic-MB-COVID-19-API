@@ -9,6 +9,7 @@ from src.services.covid import COVIDService
 mod = Blueprint('root', __name__)
 cors = CORS(mod)
 
+
 @mod.route("", methods=["GET"])
 @cross_origin()
 def get_root():

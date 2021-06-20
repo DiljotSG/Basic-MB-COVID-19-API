@@ -4,6 +4,7 @@ import src.consts as consts
 from typing import Optional
 from jsonschema import validate
 
+
 class ArcGISService:
     @staticmethod
     def send_request(url: str, params: dict):
