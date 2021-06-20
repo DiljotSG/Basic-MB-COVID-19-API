@@ -1,6 +1,6 @@
 # flask-api-template
 
-![Python CI](https://github.com/DiljotSG/flask-api-template/workflows/Python%20application/badge.svg?branch=main)
+[![Python application](https://github.com/DiljotSG/Basic-MB-COVID-19-API/actions/workflows/pythonapp.yml/badge.svg)](https://github.com/DiljotSG/Basic-MB-COVID-19-API/actions/workflows/pythonapp.yml)
 
 A basic wrapper for the MB COVID-19 ArcGIS REST API
 
