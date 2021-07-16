@@ -10,9 +10,9 @@ class ImageService:
     def __init__(self) -> None:
         self.font = ImageFont.truetype("./resources/Poppins-Light.ttf", 60)
         self.date_font = ImageFont.truetype("./resources/Poppins-Light.ttf", 40)
-        self.data = COVIDService.get_daily_data()
 
     def get_daily_cases_image(self, new_deaths):
+        self.data = COVIDService.get_daily_data()
         self.image = Image.open("./resources/template-cases.png")
         self.width, self.height = self.image.size
         self.draw = ImageDraw.Draw(self.image)
@@ -27,6 +27,7 @@ class ImageService:
         return self.image
 
     def get_daily_vaxx_image(self):
+        self.data = COVIDService.get_daily_data()
         self.image = Image.open("./resources/template-vaxx.png")
         self.width, self.height = self.image.size
         self.draw = ImageDraw.Draw(self.image)
@@ -41,6 +42,7 @@ class ImageService:
         return self.image
     
     def get_daily_data_image(self):
+        self.data = COVIDService.get_daily_data()
         self.image = Image.open("./resources/template-data.png")
         self.draw = ImageDraw.Draw(self.image)
         self.width, self.height = self.image.size
