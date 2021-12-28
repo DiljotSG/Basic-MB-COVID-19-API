@@ -1,199 +1,728 @@
-BASE_URL_VAX_COV = "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/mb_covid_vaccinations_coverage/FeatureServer/0/query"
-BASE_URL_INV_STATS = "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/mb_covid_vaccinations_inventory_stats/FeatureServer/0/query"
+BASE_URL_VAX_COV = "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/mb_covid_vaccinations_coverage_02/FeatureServer/0/query"
+BASE_URL_INV_STATS = "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/mb_covid_vaccinations_inventory_stats_02/FeatureServer/0/query"
 BASE_URL_NEW_CASES = "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/mb_covid_cases_summary_statistics/FeatureServer/0/query"
 BASE_URL_TP = "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/mb_covid_5_day_positivity_rate/FeatureServer/0/query"
 
 PERCENT_SCHEMA = {
-	"definitions": {},
-	"$schema": "http://json-schema.org/draft-07/schema#", 
-	"$id": "https://example.com/object1623946779.json", 
-	"title": "Root", 
-	"type": "object",
-	"required": [
-		"features"
-	],
-	"properties": {
-		"features": {
-			"$id": "#root/features", 
-			"title": "Features", 
-			"type": "array",
-			"default": [],
-			"items":{
-				"$id": "#root/features/items", 
-				"title": "Items", 
-				"type": "object",
-				"required": [
-					"attributes"
-				],
-				"properties": {
-					"attributes": {
-						"$id": "#root/features/items/attributes", 
-						"title": "Attributes", 
-						"type": "object",
-						"required": [
-							"RHA",
-							"Per_cent_Partially_Immunized_18",
-							"Per_cent_Fully_Immunized_18",
-							"Per_cent_All_Immunized_18",
-							"Per_cent_Partially_Immunized_12",
-							"Per_cent_Fully_Immunized_12",
-							"Per_cent_All_Immunized_12",
-							"ObjectId"
-						],
-						"properties": {
-							"RHA": {
-								"$id": "#root/features/items/attributes/RHA", 
-								"title": "Rha", 
-								"type": "string",
-								"default": "",
-								"pattern": "^.*$"
-							},
-							"Per_cent_Partially_Immunized_18": {
-								"$id": "#root/features/items/attributes/Per_cent_Partially_Immunized_18", 
-								"title": "Per_cent_partially_immunized_18", 
-								"type": "number",
-								"default": 0.0
-							},
-							"Per_cent_Fully_Immunized_18": {
-								"$id": "#root/features/items/attributes/Per_cent_Fully_Immunized_18", 
-								"title": "Per_cent_fully_immunized_18", 
-								"type": "number",
-								"default": 0.0
-							},
-							"Per_cent_All_Immunized_18": {
-								"$id": "#root/features/items/attributes/Per_cent_All_Immunized_18", 
-								"title": "Per_cent_all_immunized_18", 
-								"type": "number",
-								"default": 0.0
-							},
-							"Per_cent_Partially_Immunized_12": {
-								"$id": "#root/features/items/attributes/Per_cent_Partially_Immunized_12", 
-								"title": "Per_cent_partially_immunized_12", 
-								"type": "number",
-								"default": 0.0
-							},
-							"Per_cent_Fully_Immunized_12": {
-								"$id": "#root/features/items/attributes/Per_cent_Fully_Immunized_12", 
-								"title": "Per_cent_fully_immunized_12", 
-								"type": "number",
-								"default": 0.0
-							},
-							"Per_cent_All_Immunized_12": {
-								"$id": "#root/features/items/attributes/Per_cent_All_Immunized_12", 
-								"title": "Per_cent_all_immunized_12", 
-								"type": "number",
-								"default": 0
-							},
-							"ObjectId": {
-								"$id": "#root/features/items/attributes/ObjectId", 
-								"title": "Objectid", 
-								"type": "integer",
-								"default": 0
-							}
-						}
-					}
-
-				}
-			}
-
-		}
-	}
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "objectIdFieldName": {
+      "type": "string"
+    },
+    "uniqueIdField": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "isSystemMaintained": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "isSystemMaintained"
+      ]
+    },
+    "globalIdFieldName": {
+      "type": "string"
+    },
+    "fields": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "length": {
+              "type": "integer"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "length",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        }
+      ]
+    },
+    "exceededTransferLimit": {
+      "type": "boolean"
+    },
+    "features": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "RHA": {
+                  "type": "string"
+                },
+                "Per_cent_Partially_Immunized_18": {
+                  "type": "number"
+                },
+                "Per_cent_Fully_Immunized_18": {
+                  "type": "number"
+                },
+                "Per_cent_With_Third_Dose_18": {
+                  "type": "number"
+                },
+                "Per_cent_All_Immunized_18": {
+                  "type": "number"
+                },
+                "Per_cent_Partially_Immunized_12": {
+                  "type": "number"
+                },
+                "Per_cent_Fully_Immunized_12": {
+                  "type": "number"
+                },
+                "Per_cent_With_Third_Dose_12": {
+                  "type": "number"
+                },
+                "Per_cent_All_Immunized_12": {
+                  "type": "integer"
+                },
+                "Per_cent_Partially_Immunized_5": {
+                  "type": "number"
+                },
+                "Per_cent_Fully_Immunized_5": {
+                  "type": "number"
+                },
+                "Per_cent_With_Third_Dose_5": {
+                  "type": "number"
+                },
+                "Per_cent_All_Immunized_5": {
+                  "type": "number"
+                },
+                "ObjectId": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "RHA",
+                "Per_cent_Partially_Immunized_18",
+                "Per_cent_Fully_Immunized_18",
+                "Per_cent_With_Third_Dose_18",
+                "Per_cent_All_Immunized_18",
+                "Per_cent_Partially_Immunized_12",
+                "Per_cent_Fully_Immunized_12",
+                "Per_cent_With_Third_Dose_12",
+                "Per_cent_All_Immunized_12",
+                "Per_cent_Partially_Immunized_5",
+                "Per_cent_Fully_Immunized_5",
+                "Per_cent_With_Third_Dose_5",
+                "Per_cent_All_Immunized_5",
+                "ObjectId"
+              ]
+            }
+          },
+          "required": [
+            "attributes"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "objectIdFieldName",
+    "uniqueIdField",
+    "globalIdFieldName",
+    "fields",
+    "features"
+  ]
 }
 
 DOSES_SCHEMA = {
-	"definitions": {},
-	"$schema": "http://json-schema.org/draft-07/schema#", 
-	"$id": "https://example.com/object1623946859.json", 
-	"title": "Root", 
-	"type": "object",
-	"required": [
-		"features"
-	],
-	"properties": {
-		"features": {
-			"$id": "#root/features", 
-			"title": "Features", 
-			"type": "array",
-			"default": [],
-			"items":{
-				"$id": "#root/features/items", 
-				"title": "Items", 
-				"type": "object",
-				"required": [
-					"attributes"
-				],
-				"properties": {
-					"attributes": {
-						"$id": "#root/features/items/attributes", 
-						"title": "Attributes", 
-						"type": "object",
-						"required": [
-							"Total_Doses_Administered",
-							"Supersite_FIT_Pop_Up_Clinic",
-							"Doses_Delivered_to_First_Nation",
-							"Doses_Delivered_to_Doctors_and_",
-							"Doses_Received_in_Last_48_Hours",
-							"Doses_Scheduled_for_Today",
-							"Days_worth_of_inventory",
-							"ObjectId"
-						],
-						"properties": {
-							"Total_Doses_Administered": {
-								"$id": "#root/features/items/attributes/Total_Doses_Administered", 
-								"title": "Total_doses_administered", 
-								"type": "integer",
-								"default": 0
-							},
-							"Supersite_FIT_Pop_Up_Clinic": {
-								"$id": "#root/features/items/attributes/Supersite_FIT_Pop_Up_Clinic", 
-								"title": "Supersite_fit_pop_up_clinic", 
-								"type": "integer",
-								"default": 0
-							},
-							"Doses_Delivered_to_First_Nation": {
-								"$id": "#root/features/items/attributes/Doses_Delivered_to_First_Nation", 
-								"title": "Doses_delivered_to_first_nation", 
-								"type": "integer",
-								"default": 0
-							},
-							"Doses_Delivered_to_Doctors_and_": {
-								"$id": "#root/features/items/attributes/Doses_Delivered_to_Doctors_and_", 
-								"title": "Doses_delivered_to_doctors_and_", 
-								"type": "integer",
-								"default": 0
-							},
-							"Doses_Received_in_Last_48_Hours": {
-								"$id": "#root/features/items/attributes/Doses_Received_in_Last_48_Hours", 
-								"title": "Doses_received_in_last_48_hours", 
-								"type": "integer",
-								"default": 0
-							},
-							"Doses_Scheduled_for_Today": {
-								"$id": "#root/features/items/attributes/Doses_Scheduled_for_Today", 
-								"title": "Doses_scheduled_for_today", 
-								"type": "integer",
-								"default": 0
-							},
-							"Days_worth_of_inventory": {
-								"$id": "#root/features/items/attributes/Days_worth_of_inventory", 
-								"title": "Days_worth_of_inventory", 
-								"type": "integer",
-								"default": 0
-							},
-							"ObjectId": {
-								"$id": "#root/features/items/attributes/ObjectId", 
-								"title": "Objectid", 
-								"type": "integer",
-								"default": 0
-							}
-						}
-					}
-
-				}
-			}
-
-		}
-	}
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "objectIdFieldName": {
+      "type": "string"
+    },
+    "uniqueIdField": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "isSystemMaintained": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "isSystemMaintained"
+      ]
+    },
+    "globalIdFieldName": {
+      "type": "string"
+    },
+    "fields": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        }
+      ]
+    },
+    "features": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "Total_Doses_Administered": {
+                  "type": "integer"
+                },
+                "Doses_Scheduled_for_Today": {
+                  "type": "integer"
+                },
+                "ObjectId": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "Total_Doses_Administered",
+                "Doses_Scheduled_for_Today",
+                "ObjectId"
+              ]
+            }
+          },
+          "required": [
+            "attributes"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "objectIdFieldName",
+    "uniqueIdField",
+    "globalIdFieldName",
+    "fields",
+    "features"
+  ]
 }
 
 CASES_SCHEMA = {

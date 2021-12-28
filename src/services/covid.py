@@ -16,12 +16,7 @@ class COVIDService:
         data = ArcGISService.get_doses_data()["features"][0]["attributes"]
         keys = [
             "Total_Doses_Administered",
-            "Supersite_FIT_Pop_Up_Clinic",
-            "Doses_Delivered_to_First_Nation",
-            "Doses_Delivered_to_Doctors_and_",
-            "Doses_Received_in_Last_48_Hours",
             "Doses_Scheduled_for_Today",
-            "Days_worth_of_inventory"
         ]
         return dict((k,v) for k,v in data.items() if k in keys)
 
@@ -31,10 +26,16 @@ class COVIDService:
         keys = [
             "Per_cent_Partially_Immunized_18",
             "Per_cent_Fully_Immunized_18",
+            "Per_cent_With_Third_Dose_18",
             "Per_cent_All_Immunized_18",
             "Per_cent_Partially_Immunized_12",
             "Per_cent_Fully_Immunized_12",
-            "Per_cent_All_Immunized_12"
+            "Per_cent_With_Third_Dose_12",
+            "Per_cent_All_Immunized_12",
+            "Per_cent_Partially_Immunized_5",
+            "Per_cent_Fully_Immunized_5",
+            "Per_cent_With_Third_Dose_5",
+            "Per_cent_All_Immunized_5",
         ]
         return dict((k,v) for k,v in data.items() if k in keys)
 

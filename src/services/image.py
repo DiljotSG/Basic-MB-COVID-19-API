@@ -34,9 +34,9 @@ class ImageService:
         messages = [
             str('{:,}'.format(self.data["Total_Doses_Administered"])),
             str('{:,}'.format(self.data["Doses_Scheduled_for_Today"])),
-            str('{:,}% (18+) / {:,}% (12+)'.format(self.data["Per_cent_Partially_Immunized_18"], self.data["Per_cent_Partially_Immunized_12"])),
-            str('{:,}% (18+) / {:,}% (12+)'.format(self.data["Per_cent_Fully_Immunized_18"], self.data["Per_cent_Fully_Immunized_12"])),
-            str('{:,}% (18+) / {:,}% (12+)'.format(self.data["Per_cent_All_Immunized_18"], self.data["Per_cent_All_Immunized_12"]))
+            str('{:,}% (12+) / {:,}% (5+)'.format(self.data["Per_cent_Partially_Immunized_12"], self.data["Per_cent_Partially_Immunized_5"])),
+            str('{:,}% (12+) / {:,}% (5+)'.format(self.data["Per_cent_Fully_Immunized_12"], self.data["Per_cent_Fully_Immunized_5"])),
+            str('{:,}% (12+) / {:,}% (5+)'.format(self.data["Per_cent_With_Third_Dose_12"], self.data["Per_cent_With_Third_Dose_5"]))
         ]
         self.__write_data(messages)
         return self.image
