@@ -508,7 +508,7 @@ PERCENT_SCHEMA = {
                   "type": "number"
                 },
                 "Per_cent_All_Immunized_12": {
-                  "type": "integer"
+                  "type": "number"
                 },
                 "Per_cent_Partially_Immunized_5": {
                   "type": "number"
