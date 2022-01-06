@@ -1,6 +1,7 @@
 BASE_URL_VAX_COV = "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/mb_covid_vaccinations_coverage_02/FeatureServer/0/query"
 BASE_URL_INV_STATS = "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/mb_covid_vaccinations_inventory_stats_02/FeatureServer/0/query"
 BASE_URL_NEW_CASES = "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/mb_covid_cases_summary_statistics/FeatureServer/0/query"
+BASE_URL_NEW_HOSP = "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/mb_covid_cases_and_hospitalizations_daily/FeatureServer/0/query"
 BASE_URL_TP = "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/mb_covid_5_day_positivity_rate/FeatureServer/0/query"
 
 PERCENT_SCHEMA = {
@@ -961,6 +962,809 @@ TP_SCHEMA = {
 
 		}
 	}
+}
+
+HOSP_SCHEMA = {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "objectIdFieldName": {
+      "type": "string"
+    },
+    "uniqueIdField": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "isSystemMaintained": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "isSystemMaintained"
+      ]
+    },
+    "globalIdFieldName": {
+      "type": "string"
+    },
+    "fields": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "length": {
+              "type": "integer"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "length",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            },
+            "sqlType": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "null"
+            },
+            "defaultValue": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "alias",
+            "sqlType",
+            "domain",
+            "defaultValue"
+          ]
+        }
+      ]
+    },
+    "exceededTransferLimit": {
+      "type": "boolean"
+    },
+    "features": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "Date": {
+                  "type": "integer"
+                },
+                "Daily_Cases": {
+                  "type": "integer"
+                },
+                "Cumulative_Cases": {
+                  "type": "integer"
+                },
+                "Recoveries": {
+                  "type": "integer"
+                },
+                "Total_Recoveries": {
+                  "type": "integer"
+                },
+                "Deaths": {
+                  "type": "integer"
+                },
+                "Total_Deaths": {
+                  "type": "integer"
+                },
+                "New_ICU_Admissions": {
+                  "type": "integer"
+                },
+                "Current_ICU___Total": {
+                  "type": "integer"
+                },
+                "Current_ICU___Active": {
+                  "type": "integer"
+                },
+                "Cumulative_ICU_Admissions": {
+                  "type": "integer"
+                },
+                "New_IP_Admissions_Total": {
+                  "type": "integer"
+                },
+                "Current_Hospitalizations___Tota": {
+                  "type": "integer"
+                },
+                "Current_Hospitalizations___Acti": {
+                  "type": "integer"
+                },
+                "Cumulative_IP_Admissions": {
+                  "type": "integer"
+                },
+                "Non_ICU_Hospitalizations___Acti": {
+                  "type": "integer"
+                },
+                "Active_Cases__not_hospitalized_": {
+                  "type": "integer"
+                },
+                "Positivity_Rate": {
+                  "type": "number"
+                },
+                "Daily_Tests": {
+                  "type": "integer"
+                },
+                "Cumulative_Tests": {
+                  "type": "integer"
+                },
+                "ObjectId": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "Date",
+                "Daily_Cases",
+                "Cumulative_Cases",
+                "Recoveries",
+                "Total_Recoveries",
+                "Deaths",
+                "Total_Deaths",
+                "New_ICU_Admissions",
+                "Current_ICU___Total",
+                "Current_ICU___Active",
+                "Cumulative_ICU_Admissions",
+                "New_IP_Admissions_Total",
+                "Current_Hospitalizations___Tota",
+                "Current_Hospitalizations___Acti",
+                "Cumulative_IP_Admissions",
+                "Non_ICU_Hospitalizations___Acti",
+                "Active_Cases__not_hospitalized_",
+                "Positivity_Rate",
+                "Daily_Tests",
+                "Cumulative_Tests",
+                "ObjectId"
+              ]
+            }
+          },
+          "required": [
+            "attributes"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "objectIdFieldName",
+    "uniqueIdField",
+    "globalIdFieldName",
+    "fields",
+    "exceededTransferLimit",
+    "features"
+  ]
 }
 
 Y_VALUES = [

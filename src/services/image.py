@@ -11,6 +11,21 @@ class ImageService:
         self.font = ImageFont.truetype("./resources/Poppins-Light.ttf", 60)
         self.date_font = ImageFont.truetype("./resources/Poppins-Light.ttf", 40)
 
+    def get_daily_2022_image(self, new_hosp, new_icu, new_deaths):
+        self.data = COVIDService.get_daily_data()
+        self.image = Image.open("./resources/template-2022.png")
+        self.width, self.height = self.image.size
+        self.draw = ImageDraw.Draw(self.image)
+        messages = [
+            str('Total: {:,}'.format(self.data["Active_Hospitalizations"])) if new_hosp is None else str('New: {:,} / Total: {:,}'.format(new_hosp, self.data["Active_Hospitalizations"])),
+            str('Total: {:,}'.format(self.data["Active_ICU_Patients"])) if new_icu is None else str('New: {:,} / Total: {:,}'.format(new_icu, self.data["Active_ICU_Patients"])),
+            str('{:,}'.format(self.data["New_Cases"])),
+            str('{:,}%'.format(self.data["Positivity_Rate"])),
+            str('Total: {:,}'.format(self.data["Deaths"])) if new_deaths is None else str('New: {:,} / Total: {:,}'.format(new_deaths, self.data["Deaths"]))
+        ]
+        self.__write_data(messages)
+        return self.image
+
     def get_daily_cases_image(self, new_deaths):
         self.data = COVIDService.get_daily_data()
         self.image = Image.open("./resources/template-cases.png")

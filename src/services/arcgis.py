@@ -88,3 +88,22 @@ class ArcGISService:
         ).json()
         validate(instance=data, schema=consts.TP_SCHEMA)
         return data
+    
+    @staticmethod
+    def get_hosp_data() -> Optional[dict]:
+        data = ArcGISService.send_request(
+            consts.BASE_URL_NEW_HOSP,
+            {
+                "f": "json",
+                "cacheHint": True,
+                "resultOffset": 0,
+                "resultRecordCount": 1,
+                "where": "1=1",
+                "orderByFields": "Date desc",
+                "outFields": "*",
+                "resultType": "standard",
+                "spatialRel": "esriSpatialRelIntersects"
+            }
+        ).json()
+        validate(instance=data, schema=consts.HOSP_SCHEMA)
+        return data

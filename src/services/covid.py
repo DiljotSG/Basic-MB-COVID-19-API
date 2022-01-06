@@ -9,6 +9,7 @@ class COVIDService:
         result.update(COVIDService.__get_parsed_immunization_data())
         result.update(COVIDService.__get_parsed_cases_data())
         result.update(COVIDService.__get_parsed_tp_data())
+        result.update(COVIDService.__get_parsed_hosp_data())
         return result
 
     @staticmethod
@@ -63,5 +64,13 @@ class COVIDService:
         data = ArcGISService.get_tp_data()["features"][0]["attributes"]
         keys = [
             "Positivity_Rate"
+        ]
+        return dict((k,v) for k,v in data.items() if k in keys)
+
+    @staticmethod
+    def __get_parsed_hosp_data() -> dict:
+        data = ArcGISService.get_hosp_data()["features"][0]["attributes"]
+        keys = [
+            "New_ICU_Admissions"
         ]
         return dict((k,v) for k,v in data.items() if k in keys)
