@@ -23,8 +23,8 @@ imageService = ImageService()
 @cross_origin()
 def get_image_2022():
     code = HttpCodes.HTTP_200_OK
-    new_icu = request.args.get("new_icu", type=int)
     new_hosp = request.args.get("new_hosp", type=int)
+    new_icu = request.args.get("new_icu", type=int)
     new_deaths = request.args.get("new_deaths", type=int)
     new_icu = None if new_icu < 0 else new_icu
     new_hosp = None if new_hosp < 0 else new_hosp
