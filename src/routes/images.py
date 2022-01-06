@@ -1,4 +1,5 @@
 import os
+from PIL.Image import new
 import flask
 import base64
 
@@ -28,7 +29,7 @@ def get_image_2022():
     new_icu = None if new_icu < 0 else new_icu
     new_hosp = None if new_hosp < 0 else new_hosp
     new_deaths = None if new_deaths < 0 else new_deaths
-    image = imageService.get_daily_2022_image(new_icu, new_hosp, new_deaths)
+    image = imageService.get_daily_2022_image(new_hosp, new_icu, new_deaths)
     return return_image(image), code
 
 
