@@ -19,9 +19,9 @@ class ImageService:
         messages = [
             str('Total: {:,}'.format(self.data["Active_Hospitalizations"])) if new_hosp is None else str('New: {:,} / Total: {:,}'.format(new_hosp, self.data["Active_Hospitalizations"])),
             str('Total: {:,}'.format(self.data["Active_ICU_Patients"])) if new_icu is None else str('New: {:,} / Total: {:,}'.format(new_icu, self.data["Active_ICU_Patients"])),
+            str('Total: {:,}'.format(self.data["Deaths"])) if new_deaths is None else str('New: {:,} / Total: {:,}'.format(new_deaths, self.data["Deaths"])),
             str('{:,}'.format(self.data["New_Cases"])),
-            str('{:,}%'.format(self.data["Positivity_Rate"])),
-            str('Total: {:,}'.format(self.data["Deaths"])) if new_deaths is None else str('New: {:,} / Total: {:,}'.format(new_deaths, self.data["Deaths"]))
+            str('{:,}%'.format(self.data["Positivity_Rate"]))
         ]
         self.__write_data(messages)
         return self.image
@@ -47,7 +47,7 @@ class ImageService:
         self.width, self.height = self.image.size
         self.draw = ImageDraw.Draw(self.image)
         messages = [
-            str('{:,}'.format(self.data["Total_Doses_Administered"])),
+            str('{:,}'.format(self.data["Daily_Tests"])),
             str('{:,}'.format(self.data["Doses_Scheduled_for_Today"])),
             str('{:,}% (12+) / {:,}% (5+)'.format(self.data["Per_cent_Partially_Immunized_12"], self.data["Per_cent_Partially_Immunized_5"])),
             str('{:,}% (12+) / {:,}% (5+)'.format(self.data["Per_cent_Fully_Immunized_12"], self.data["Per_cent_Fully_Immunized_5"])),
