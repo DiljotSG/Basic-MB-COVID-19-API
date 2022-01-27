@@ -1,4 +1,4 @@
-# flask-api-template
+# Basic-MB-COVID-19-API
 
 [![Python application](https://github.com/DiljotSG/Basic-MB-COVID-19-API/actions/workflows/pythonapp.yml/badge.svg)](https://github.com/DiljotSG/Basic-MB-COVID-19-API/actions/workflows/pythonapp.yml)
 
